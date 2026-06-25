@@ -19,7 +19,7 @@
 	<ItemGroup>
 		<None Include="README.md" PackagePath="" Pack="true" />
 		<None Include="build\$(PackageId).targets" PackagePath="build" Pack="true" />
-		<None Include="x86\*.dll" PackagePath="x86" Pack="true" />
-		<None Include="x64\*.dll" PackagePath="x64" Pack="true" />
+		<None Include="x86\*.*" PackagePath="x86" Pack="true" />
+		<None Include="x64\*.*" PackagePath="x64" Pack="true" />
 	</ItemGroup>
 </Project>

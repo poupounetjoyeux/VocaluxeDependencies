@@ -71,8 +71,4 @@ jobs:
       if: ${{ github.event_name == 'push' }}
       env:
         NUGET_API_KEY: ${{ secrets.NugetApiKey }}
-      run: |
-        for nuget in nuget/*.nupkg; do
-          echo "Pushing NuGet $nuget"
-          dotnet nuget push "$nuget" -k "$NUGET_API_KEY" -s "https://api.nuget.org/v3/index.json" --skip-duplicate
-        done
+      run: dotnet nuget push "nuget/*.nupkg" --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate

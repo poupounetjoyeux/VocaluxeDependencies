@@ -6,16 +6,16 @@
 
 
     <ItemGroup>
-      <FilesToCopy Include="$(MSBuildThisFileDirectory)..\x86\**\*.*" Condition="'$(Platform)'=='x86'"/>
+      <FilesToCopy Include="$(MSBuildThisFileDirectory)..\x86\*.*" Condition="'$(Platform)'=='x86'"/>
     </ItemGroup>
 
     <ItemGroup>
-      <FilesToCopy Include="$(MSBuildThisFileDirectory)..\x64\**\*.*" Condition="'$(Platform)'=='x64'"/>
+      <FilesToCopy Include="$(MSBuildThisFileDirectory)..\x64\*.*" Condition="'$(Platform)'=='x64'"/>
     </ItemGroup>
 
     <Copy
         SourceFiles="@(FilesToCopy)"
-        DestinationFiles="@(FilesToCopy->'$(TargetDir)libs\unmanaged\%(RecursiveDir)%(Filename)%(Extension)')"
+        DestinationFiles="@(FilesToCopy->'$(TargetDir)libs\unmanaged\%(Filename)%(Extension)')"
 	/>
   </Target>
   <ItemGroup>

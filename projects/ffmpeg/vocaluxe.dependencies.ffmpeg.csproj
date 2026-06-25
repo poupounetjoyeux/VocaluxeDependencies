@@ -13,14 +13,14 @@
 		<EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<Version>1.1.0</Version>
+		<Version>1.1.1</Version>
 	</PropertyGroup>
 	
 	<ItemGroup>
 		<None Include="README.md" PackagePath="" Pack="true" />
 		<None Include="build\$(PackageId).targets" PackagePath="build" Pack="true" />
-		<None Include="x86\**\*.dll" PackagePath="x86" Pack="true" />
-		<None Include="x64\**\*.dll" PackagePath="x64" Pack="true" />
+		<None Include="x86\*.dll" PackagePath="x86" Pack="true" />
+		<None Include="x64\*.dll" PackagePath="x64" Pack="true" />
 	</ItemGroup>
 	
 	<!-- Here an helper invokable with `dotnet build -t:UpdateFFmpegBinaries` to update FFmpeg binaries -->
@@ -46,7 +46,7 @@
 		<MSBuild Projects="$(MSBuildProjectFullPath)"
 			Properties="ZipUri=$(FFmpegWin64Uri);Arch=x64"
 			Targets="DownloadAndExtractFFmpegBinaries" />
-    </Target>
+	</Target>
 	
 	<Target Name="DownloadAndExtractFFmpegBinaries">
 		<PropertyGroup>
@@ -69,9 +69,9 @@
 		</ItemGroup>
 		
 		<Move SourceFiles="@(BinariesFiles)" 
-        DestinationFiles="@(BinariesFiles->'$(FFmpegFolder)\%(Filename)%(Extension)')" />
+			DestinationFiles="@(BinariesFiles->'$(FFmpegFolder)\%(Filename)%(Extension)')" />
 		
-        <RemoveDir Directories="$(FFmpegFolder)\unzipped" />
+		<RemoveDir Directories="$(FFmpegFolder)\unzipped" />
 		<Delete Files="$(FFmpegFolder)\$(ZipName)" />
 	</Target>
 	<!-- This comment is to enforce regeneration by GitHub workflow -->
